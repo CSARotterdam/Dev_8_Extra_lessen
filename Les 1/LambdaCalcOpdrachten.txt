@@ -1,8 +1,8 @@
 Evaluatie regels:
-Var (v):		 		eval (a) == a
-Functie (F): 			eval (fun x -> t) == fun x -> t
-Functie applicatie (FA):eval (fun x -> t) a == t[x -> a]
-Fucntie call (FC): 		eval (t u) = eval(t) -> t' && eval(u) -> u' = t' u' == v
+Var (v): eval (a) == a
+Functie (F): eval (fun x -> t) == fun x -> t
+Functie applicatie (FA): eval (fun x -> t) a == t[x -> a]
+Fucntie call (FC): eval (t u) = eval(t) -> t' && eval(u) -> u' = t' u' == v
 
 Opdrachten long lambda
 
