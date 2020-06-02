@@ -1,0 +1,19 @@
+((fun x -> fun y -> y x) 2) ((fun z -> fun x-> x + z) 5)
+-------------------------------
+t = ((fun x -> fun y -> y x) 2)
+u = ((fun z -> fun x-> x + z) 5)
+
+t[0] = ((fun x -> fun y -> y x) 2) => (fun y -> y + 2)
+t[1] = (fun y -> y + 2) => (fun y -> y + 2)
+t' = t[1]
+
+u[0] = ((fun z -> fun x-> x + z) 5) =>(fun x-> x + 5)
+u[1] = (fun x-> x + 5) => (fun x-> x + 5)
+u'= u[1]
+
+t' u' = (fun y -> y + 2) (fun x-> x + 5)
+t'u'[0] = (fun y -> y + 2) (fun x-> x + 5) => (fun x-> x + 5) 2
+t'u'[1] = (fun x-> x + 5) 2 => 2 + 5
+t'u'[2] = 2 + 5 => 7
+t'u'[3] = 7 => 7
+v = t'u'[3]
