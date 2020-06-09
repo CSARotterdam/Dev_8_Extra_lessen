@@ -1,8 +1,8 @@
 Evaluatie regels:
-Var (v): eval (a) == a
-Functie (F): eval (fun x -> t) == fun x -> t
-Functie applicatie (FA): eval (fun x -> t) a == t[x -> a]
-Fucntie call (FC): eval (t u) = eval(t) -> t' && eval(u) -> u' = t' u' == v
+Var (v):		 		eval (a) == a
+Functie (F): 			eval (fun x -> t) == fun x -> t
+Functie applicatie (FA):eval (fun x -> t) a == t[x -> a]
+Fucntie call (FC): 		eval (t u) = eval(t) -> t' && eval(u) -> u' = t' u' == v
 
 Opdrachten long lambda
 
@@ -13,7 +13,7 @@ Opdrachten long lambda
 2. (fun x -> fun y -> x y) T 
 
 (FA) 
-3. (((fun x -> fun z -> fun y -> y + z - x) 5) A) B)
+3. ((fun x -> fun z -> fun y -> y + z - x) 5)
 
 (FC)
 4. (fun z -> fun a -> a z) (((fun b -> b) D) ((fun t -> t) I))
@@ -29,10 +29,10 @@ Opdrachten shorthand lambda
 1.  (λ x -> x) (λy -> x)
 
 (FA)
-2.	(λ x y -> f y x) ((λ x -> x) A)
+2.	(λ x y -> f y x) (λ x -> x)
 
 (FA)
-3. (λ b a -> ((b) a)) (λc -> 2)
+3. (λ a a -> a) (λc -> 2)
 
 (FC)
 4. (((λ b a -> ((b) a)) (λc -> c + c)) 3)

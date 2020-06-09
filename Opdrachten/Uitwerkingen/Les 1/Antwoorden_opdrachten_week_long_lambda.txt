@@ -1,0 +1,65 @@
+FA - eval (fun x -> t) a == t[x -> a]
+
+1. eval(fun x -> y) z
+x = x
+t = y
+a = z
+t[x -> a] = y
+
+2. (fun x -> fun y -> x y) T 
+x = x
+t = fun y -> x y
+a = T
+t[x -> a] = fun y -> T y
+
+3. ((fun x -> fun z -> fun y -> y + z - x) 5)
+x = x
+t = (fun z -> fun y -> y + z - x)
+a = 5
+t[x -> a] = (fun z -> fun y -> y + z - 5)
+
+
+FC - eval (t u) = eval(t) -> t' && eval(u) -> u' = t' u' == v
+
+4. (fun z -> fun a -> a z) (((fun b -> b) D) ((fun t -> t) I))
+
+t = (fun z -> fun a -> a z)
+u = (((fun b -> b) D) ((fun t -> t) I))
+------
+t[0] = (fun z -> fun a -> a z) => (fun z -> fun a -> a z)
+t' = t[0]
+
+u[0] = ((fun b -> b) D) ((fun t -> t) I) => D ((fun t -> t) I)
+u[1] = D ((fun t -> t) I) => D I
+u[2] = D I => D I
+u' = u[2]
+------
+
+t' u' = (fun z -> fun a -> a z) D I 
+
+t' u'[0] = (fun z -> fun a -> a z) D I => (fun a -> a D) I
+t' u'[1]= (fun a -> a D) I => I D
+
+t' u'[2] = I D => I D
+v = t' u'[2]
+
+
+5. (fun z -> fun y -> z + y) ((fun x -> x) 5)
+
+t = (fun z -> fun y -> z + y)
+u = ((fun x -> x) 5)
+------
+
+t[0] = (fun z -> fun y -> z + y) => (fun z -> fun y -> z + y)
+t' = t[0]
+
+u[0] = ((fun x -> x) 5) => 5
+u[1] = 5 => 5
+u' = u[1]
+------
+
+t' u' = (fun z -> fun y -> z + y) 5
+
+t' u'[0] = (fun z -> fun y -> z + y) 5 => (fun y -> 5 + y)
+t' u'[1] = (fun y -> 5 + y) => (fun y -> 5 + y)
+v = t' u'[1]
