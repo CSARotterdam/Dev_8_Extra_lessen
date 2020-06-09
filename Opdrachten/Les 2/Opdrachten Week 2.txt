@@ -1,0 +1,6 @@
+11) Maak records: cirkel met radius, rechthoek met lengte en breedte
+22) Maak een discriminated union "vorm" met rechthoek en cirkel er in
+33) Maak een functie die de oppervlakte van een rechthoek berekent
+44) Maak een functie die de oppervlakte van een cirkel berekent
+55) Maak een functie die de oppervlakte van een vorm berekent
+66) Maak een functie die een lijst met vormen accepteerd en alleen de cirkels teruggeeft en doe hetzelde voor rechthoeken
