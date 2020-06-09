@@ -1,0 +1,52 @@
+type cirkel = {radius: float}
+ 
+type rechthoek = {breedte: float; lengte: float}
+ 
+type vorm =
+    | Cirkelvorm of cirkel
+    | Rechthoekvorm of rechthoek
+ 
+let oppervlakteRechthoek (rechthoek : rechthoek) = rechthoek.breedte * rechthoek.lengte
+ 
+let oppervlakteCirkel (cirkel : cirkel) = 3.14 * (cirkel.radius ** 2.0)
+ 
+let oppervlakteVorm (vorm : vorm) =
+    match vorm with
+    | Cirkelvorm z -> oppervlakteCirkel z
+    | Rechthoekvorm x -> oppervlakteRechthoek x
+ 
+let rec mapList (func : 'a -> 'b) (list : 'a list) : 'b list =
+    match list with
+    | [] -> []
+    | head :: tail -> func head :: mapList func tail
+   
+let rec optionOnlyExistingValue (list : 'a option list) : 'a list =
+    match list with
+    | [] -> []
+    | head :: tail ->
+        match head with
+        | Some x -> x :: optionOnlyExistingValue tail
+        | None -> optionOnlyExistingValue tail
+ 
+////it doet hetzelfde
+//let rec optionOnlyExistingValue (list : 'a option list) : 'a list =
+//    match list with
+//    | [] -> []
+//    | Some x :: tail ->  x :: optionOnlyExistingValue tail
+//    | None :: tail -> optionOnlyExistingValue tail
+ 
+let FilterLijst (filterFunctie : 'a -> 'b option) (list : 'a list) : 'b list =
+    optionOnlyExistingValue (mapList filterFunctie list)
+ 
+let alleenCirkels vorm =
+    match vorm with
+    | Cirkelvorm x -> Some x
+    | _ -> None
+ 
+let alleenRechthoeken vorm =
+    match vorm with
+    | Rechthoekvorm x -> Some x
+    | _ -> None
+ 
+let filterCirkels = FilterLijst alleenCirkels
+let filterRechthoeken = FilterLijst alleenRechthoeken
